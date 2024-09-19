@@ -1,0 +1,10 @@
+<div class="flex flex-column gap-5">
+    <div class="flex">
+        <p-button label="Lista" (click)="navigateTo('/list')"></p-button>
+        <p-button label="Home" (click)="navigateTo('/')"></p-button>
+    </div>
+    
+    <div class="flex">
+        <app-subcomponents-form [objeto]="pessoa" [naoAparecer]="['id']" (onSubmit)="criar($event)"></app-subcomponents-form>
+    </div>
+</div>

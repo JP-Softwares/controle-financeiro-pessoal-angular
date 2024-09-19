@@ -1,0 +1,10 @@
+<div class="flex flex-column gap-5">
+    <div class="flex">
+        <p-button label="Criar" (click)="navigateTo('/create')"></p-button>
+        <p-button label="Home" (click)="navigateTo('/')"></p-button>
+    </div>
+    
+    <div class="flex">
+        <app-subcomponents-table [lista]="pessoas" (onRemove)="excluir($event)" (onEdit)="editar($event)"></app-subcomponents-table>
+    </div>
+</div>

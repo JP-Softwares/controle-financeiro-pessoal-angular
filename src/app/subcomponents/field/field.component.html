@@ -1,0 +1,13 @@
+<div class="field flex flex-column gap-2">
+    <label for={{name.toLowerCase()}}>{{capitalizeName}}</label>
+    @if (type == "input") {
+        <input 
+            pInputText type={{tipoCampo}}
+            id={{name.toLowerCase()}}
+            [(ngModel)]="value"
+            (input)="onValueChanged()" />
+    } 
+    @if (type == "select") {
+        <select></select>
+    }
+</div>

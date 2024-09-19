@@ -1,0 +1,26 @@
+@if(colunas.length != 0) {
+    <table>
+        <tr>
+        @for(coluna of colunas; track coluna) {
+            <th>{{coluna}}</th>
+        }
+        </tr>
+    @for(item of lista; track item) {
+        <tr>
+        @for(coluna of colunas; track coluna) {
+            <td>{{item[coluna]}}</td>
+        }
+        <td>
+            <p-button (click)="editar(item)" label="Editar">
+
+            </p-button>
+        </td>
+        <td>
+            <p-button (click)="excluir(item)" label="Excluir">
+
+            </p-button>
+        </td>
+        </tr>
+    }
+    </table>
+}

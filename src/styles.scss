@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+.form {
+    gap: 5vh
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1vh;
+
+    &.flex-column {
+        flex-direction: column;
+    }
+
+    &.flex-row {
+        flex-direction: row;
+    }
+}
+
+
+@for $i from 1 through 10 {
+    .gap-#{$i} {
+        gap: #{$i}vh
+    }
+}
