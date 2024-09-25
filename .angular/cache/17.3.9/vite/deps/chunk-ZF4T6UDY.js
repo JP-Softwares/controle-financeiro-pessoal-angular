@@ -8,7 +8,7 @@ import {
   isPlatformServer,
   parseCookieValue,
   setRootDomAdapter
-} from "./chunk-GHCBUFLY.js";
+} from "./chunk-K2YNOWK4.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_ID,
@@ -4072,4 +4072,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-4SMBNQDN.js.map
+//# sourceMappingURL=chunk-ZF4T6UDY.js.map

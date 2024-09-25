@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormComponent } from '../../subcomponents/form/form.component';
-import { Pessoa } from '../../service/pessoa';
+import { Pessoa } from '../../service/Pessoa';
 import { PessoaService } from '../../service/pessoa.service';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';

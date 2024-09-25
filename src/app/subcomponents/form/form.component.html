@@ -1,7 +1,7 @@
 
 <div class="flex flex-column gap-2">
     @for(item of listaCampos; track item) {
-        <app-subcomponents-field [name]="item" [value]="objeto[item]" (valueChanged)="bindValue($event, item)" ></app-subcomponents-field>
+        <app-subcomponents-field [name]="item" [value]="objeto[item]" [customProperties]="customPropertiesByField[item]" (valueChanged)="bindValue($event, item)" ></app-subcomponents-field>
     }
         
     <div class="flex flex-column gap-2">

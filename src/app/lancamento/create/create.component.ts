@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
-import { FormComponent } from '../../subcomponents/form/form.component';
+import { Lancamento } from '../../service/Lancamento';
+import { LancamentoService } from '../../service/lancamento.service';
 import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 import { GrupoService } from '../../service/grupo.service';
 import { Grupo } from '../../service/Grupo';
-import { PessoaService } from '../../service/pessoa.service';
-import { Pessoa } from '../../service/Pessoa';
+import { FormComponent } from '../../subcomponents/form/form.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-grupo-create',
+  selector: 'app-lancamento-create',
   standalone: true,
   imports: [FormComponent, ButtonModule],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
-export class CreateGrupoComponent {
-  grupo: Grupo = new Grupo();
+export class CreateLancamentoComponent {
+  lancamento: Lancamento = new Lancamento();
 
   customProperties: any[] = [];
 
-  constructor(private router: Router, private grupoService: GrupoService, private pessoaService: PessoaService) {
+  constructor(private router: Router, private lancamentoService: LancamentoService, private grupoService: GrupoService) {
     this.customProperties = [
       {
-        name: "pessoa",
+        name: "grupo",
         type: "select",
         select: {
-          selectItems: pessoaService.listAll(),
-          displayValueFunction: (item: Pessoa) => item.nome,
-          searchValueFunction: (item: Pessoa) => item.nome
+          selectItems: grupoService.listAll(),
+          displayValueFunction: (item: Grupo) => item.nome,
+          searchValueFunction: (item: Grupo) => item.nome
         }
       }
     ]
@@ -48,12 +48,12 @@ export class CreateGrupoComponent {
     return {valido: valido, camposNaoPreenchidos: camposNaoPreenchidos};
   }
 
-  criar(grupo: Grupo) {
-    let check = this.checkObrigatorios(grupo, ["nome", "descricao"]);
+  criar(lancamento: Lancamento) {
+    let check = this.checkObrigatorios(lancamento, ["nome", "descricao"]);
     if(check.valido) {
-      this.grupoService.add(grupo);
+      this.lancamentoService.add(lancamento);
 
-      this.grupo = new Grupo();
+      this.lancamento = new Lancamento();
 
       this.navigateTo('/')
     } else{

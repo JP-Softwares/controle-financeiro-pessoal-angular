@@ -17,9 +17,13 @@ export class FormComponent implements OnInit {
 
   @Input() naoAparecer: string[] = [];
 
-  @Input() types: [] = [];
+  @Input() customProperties: any [] = [];
 
-  tipos: any = {};
+  constructor() {
+    
+  }
+
+  customPropertiesByField: any = {};
 
   listaCampos: string[] = [];
 
@@ -34,11 +38,11 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listaCampos = Object.keys(this.objeto).filter((item) => !this.naoAparecer.includes(item));
-
     Object.keys(this.objeto).forEach((field: string) => {
-      this.tipos[field] = this.findValueOrElse(this.types, 'nome', field, 'nome', 'input')
+      this.customPropertiesByField[field] = this.customProperties.find((item) => item['name'] == field);
     });
+
+    this.listaCampos = Object.keys(this.objeto).filter((item) => !this.naoAparecer.includes(item));
   }
 
   findValueOrElse(list: [], fieldSearch: string, value:any, fieldResponse: string, elseValue: any): string {

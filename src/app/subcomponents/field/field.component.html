@@ -2,12 +2,20 @@
     <label for={{name.toLowerCase()}}>{{capitalizeName}}</label>
     @if (type == "input") {
         <input 
-            pInputText type={{tipoCampo}}
+            pInputText type={{inputType}}
             id={{name.toLowerCase()}}
             [(ngModel)]="value"
             (input)="onValueChanged()" />
     } 
     @if (type == "select") {
-        <select></select>
+        <p-dropdown 
+        [options]="select['selectItems']" 
+        [(ngModel)]="selectedItem" 
+        optionLabel="_displayValueField" 
+        [filter]="true"
+        filterBy="_filterField" 
+        placeholder="Selecione um valor"
+        emptyMessage="Nenhum valor encontrado."
+        (onChange)="onValueChanged()" />
     }
 </div>

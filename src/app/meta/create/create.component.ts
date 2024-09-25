@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
-import { FormComponent } from '../../subcomponents/form/form.component';
-import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { Meta } from '../../service/Meta';
 import { GrupoService } from '../../service/grupo.service';
+import { MetaService } from '../../service/meta.service';
 import { Grupo } from '../../service/Grupo';
-import { PessoaService } from '../../service/pessoa.service';
-import { Pessoa } from '../../service/Pessoa';
+import { Router } from '@angular/router';
+import { FormComponent } from '../../subcomponents/form/form.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-grupo-create',
+  selector: 'app-meta-create',
   standalone: true,
   imports: [FormComponent, ButtonModule],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
-export class CreateGrupoComponent {
-  grupo: Grupo = new Grupo();
+export class CreateMetaComponent {
+  meta: Meta = new Meta();
 
   customProperties: any[] = [];
 
-  constructor(private router: Router, private grupoService: GrupoService, private pessoaService: PessoaService) {
+  constructor(private router: Router, private metaService: MetaService, private grupoService: GrupoService) {
     this.customProperties = [
       {
-        name: "pessoa",
+        name: "grupo",
         type: "select",
         select: {
-          selectItems: pessoaService.listAll(),
-          displayValueFunction: (item: Pessoa) => item.nome,
-          searchValueFunction: (item: Pessoa) => item.nome
+          selectItems: grupoService.listAll(),
+          displayValueFunction: (item: Grupo) => item.nome,
+          searchValueFunction: (item: Grupo) => item.nome
         }
       }
     ]
@@ -48,12 +48,12 @@ export class CreateGrupoComponent {
     return {valido: valido, camposNaoPreenchidos: camposNaoPreenchidos};
   }
 
-  criar(grupo: Grupo) {
-    let check = this.checkObrigatorios(grupo, ["nome", "descricao"]);
+  criar(meta: Meta) {
+    let check = this.checkObrigatorios(meta, ["nome", "descricao"]);
     if(check.valido) {
-      this.grupoService.add(grupo);
+      this.metaService.add(meta);
 
-      this.grupo = new Grupo();
+      this.meta = new Meta();
 
       this.navigateTo('/')
     } else{

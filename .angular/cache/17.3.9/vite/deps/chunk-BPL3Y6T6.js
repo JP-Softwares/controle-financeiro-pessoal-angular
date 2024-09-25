@@ -1004,6 +1004,56 @@ var SharedModule = class _SharedModule {
     }]
   }], null, null);
 })();
+var TranslationKeys = class {
+  static STARTS_WITH = "startsWith";
+  static CONTAINS = "contains";
+  static NOT_CONTAINS = "notContains";
+  static ENDS_WITH = "endsWith";
+  static EQUALS = "equals";
+  static NOT_EQUALS = "notEquals";
+  static NO_FILTER = "noFilter";
+  static LT = "lt";
+  static LTE = "lte";
+  static GT = "gt";
+  static GTE = "gte";
+  static IS = "is";
+  static IS_NOT = "isNot";
+  static BEFORE = "before";
+  static AFTER = "after";
+  static CLEAR = "clear";
+  static APPLY = "apply";
+  static MATCH_ALL = "matchAll";
+  static MATCH_ANY = "matchAny";
+  static ADD_RULE = "addRule";
+  static REMOVE_RULE = "removeRule";
+  static ACCEPT = "accept";
+  static REJECT = "reject";
+  static CHOOSE = "choose";
+  static UPLOAD = "upload";
+  static CANCEL = "cancel";
+  static PENDING = "pending";
+  static FILE_SIZE_TYPES = "fileSizeTypes";
+  static DAY_NAMES = "dayNames";
+  static DAY_NAMES_SHORT = "dayNamesShort";
+  static DAY_NAMES_MIN = "dayNamesMin";
+  static MONTH_NAMES = "monthNames";
+  static MONTH_NAMES_SHORT = "monthNamesShort";
+  static FIRST_DAY_OF_WEEK = "firstDayOfWeek";
+  static TODAY = "today";
+  static WEEK_HEADER = "weekHeader";
+  static WEAK = "weak";
+  static MEDIUM = "medium";
+  static STRONG = "strong";
+  static PASSWORD_PROMPT = "passwordPrompt";
+  static EMPTY_MESSAGE = "emptyMessage";
+  static EMPTY_FILTER_MESSAGE = "emptyFilterMessage";
+  static SHOW_FILTER_MENU = "showFilterMenu";
+  static HIDE_FILTER_MENU = "hideFilterMenu";
+  static SELECTION_MESSAGE = "selectionMessage";
+  static ARIA = "aria";
+  static SELECT_COLOR = "selectColor";
+  static BROWSE_FILES = "browseFiles";
+};
 var TreeDragDropService = class _TreeDragDropService {
   dragStartSource = new Subject();
   dragStopSource = new Subject();
@@ -1032,8 +1082,12 @@ var TreeDragDropService = class _TreeDragDropService {
 export {
   ObjectUtils,
   UniqueComponentId,
+  zindexutils,
+  FilterService,
+  OverlayService,
   PrimeNGConfig,
   PrimeTemplate,
-  SharedModule
+  SharedModule,
+  TranslationKeys
 };
-//# sourceMappingURL=chunk-RLIMU7PT.js.map
+//# sourceMappingURL=chunk-BPL3Y6T6.js.map

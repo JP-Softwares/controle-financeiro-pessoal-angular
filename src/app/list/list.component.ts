@@ -7,7 +7,7 @@ import { FormComponent } from '../subcomponents/form/form.component';
 import { TableComponent } from '../subcomponents/table/table.component';
 import { Router } from '@angular/router';
 import { PessoaService } from '../service/pessoa.service';
-import { Pessoa } from '../service/pessoa';
+import { Pessoa } from '../service/Pessoa';
 
 @Component({
   selector: 'app-list',

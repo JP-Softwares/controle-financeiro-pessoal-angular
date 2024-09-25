@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PessoaRoutingModule } from './pessoa-routing.module';
+import { MetaRoutingModule } from './meta-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    PessoaRoutingModule
+    MetaRoutingModule
   ]
 })
-export class PessoaModule { }
+export class MetaModule { }
