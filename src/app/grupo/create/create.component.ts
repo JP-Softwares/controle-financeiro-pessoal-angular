@@ -3,9 +3,9 @@ import { FormComponent } from '../../subcomponents/form/form.component';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { GrupoService } from '../../service/grupo.service';
-import { Grupo } from '../../service/Grupo';
+import { Grupo } from '../../service/grupo';
 import { PessoaService } from '../../service/pessoa.service';
-import { Pessoa } from '../../service/Pessoa';
+import { Pessoa } from '../../service/pessoa';
 
 @Component({
   selector: 'app-grupo-create',

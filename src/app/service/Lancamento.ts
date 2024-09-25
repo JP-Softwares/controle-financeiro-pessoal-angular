@@ -1,4 +1,4 @@
-import { Grupo } from "./Grupo"
+import { Grupo } from "./grupo"
 
 export class Lancamento {
     id: number = 0

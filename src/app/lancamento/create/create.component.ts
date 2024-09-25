@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Lancamento } from '../../service/Lancamento';
+import { Lancamento } from '../../service/lancamento';
 import { LancamentoService } from '../../service/lancamento.service';
 import { Router } from '@angular/router';
 import { GrupoService } from '../../service/grupo.service';
-import { Grupo } from '../../service/Grupo';
+import { Grupo } from '../../service/grupo';
 import { FormComponent } from '../../subcomponents/form/form.component';
 import { ButtonModule } from 'primeng/button';
 

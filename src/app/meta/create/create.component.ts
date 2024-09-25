@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Meta } from '../../service/Meta';
+import { Meta } from '../../service/meta';
 import { GrupoService } from '../../service/grupo.service';
 import { MetaService } from '../../service/meta.service';
-import { Grupo } from '../../service/Grupo';
+import { Grupo } from '../../service/grupo';
 import { Router } from '@angular/router';
 import { FormComponent } from '../../subcomponents/form/form.component';
 import { ButtonModule } from 'primeng/button';

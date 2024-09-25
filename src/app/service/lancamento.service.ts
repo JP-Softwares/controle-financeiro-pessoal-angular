@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Lancamento } from './Lancamento';
+import { Lancamento } from './lancamento';
 
 @Injectable({
   providedIn: 'root'

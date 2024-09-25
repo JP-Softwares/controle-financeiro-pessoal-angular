@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Meta } from './Meta';
+import { Meta } from './meta';
 
 @Injectable({
   providedIn: 'root'
