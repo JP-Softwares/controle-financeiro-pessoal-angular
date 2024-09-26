@@ -3,19 +3,19 @@ import {
   DomHandler,
   Ripple,
   SpinnerIcon
-} from "./chunk-UI5567MZ.js";
+} from "./chunk-UKT5GTZ4.js";
 import {
   ObjectUtils,
   PrimeTemplate,
   SharedModule
-} from "./chunk-BPL3Y6T6.js";
+} from "./chunk-UWTCL7KL.js";
 import {
   DOCUMENT,
   NgClass,
   NgIf,
   NgStyle,
   NgTemplateOutlet
-} from "./chunk-K2YNOWK4.js";
+} from "./chunk-K25JRD4I.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -61,7 +61,8 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-YVOBCSOD.js";
+} from "./chunk-UWW3JQJM.js";
+import "./chunk-FI7E6S2P.js";
 
 // node_modules/primeng/fesm2022/primeng-button.mjs
 var _c0 = ["*"];

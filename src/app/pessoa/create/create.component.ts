@@ -37,7 +37,7 @@ export class CreatePessoaComponent {
   criar(pessoa: Pessoa) {
     let check = this.checkObrigatorios(pessoa, ["nome", "email", "senha"]);
     if(check.valido) {
-      this.pessoaService.add(pessoa);
+      this.pessoaService.create(pessoa);
 
       this.pessoa = new Pessoa();
 

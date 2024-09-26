@@ -29,7 +29,7 @@ export class ListComponent {
   }
 
   listar() {
-    this.pessoas = this.pessoaService.listAll();
+    this.pessoaService.listAll().subscribe((pessoas) => this.pessoas = pessoas);
   }
 
   excluir(pessoa: Pessoa) {

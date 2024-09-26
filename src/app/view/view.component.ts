@@ -20,7 +20,9 @@ export class ViewComponent {
     let id = this.route.snapshot.paramMap.get('id');
 
     if(id != null) {
-      let pessoaEncontrada = pessoaService.getById(parseInt(id || "0"));
+      let pessoaEncontrada;
+      
+      pessoaService.getById(parseInt(id || "0")).subscribe((Pessoa) => pessoaEncontrada = Pessoa);
 
       if(pessoaEncontrada != null) {
         this.pessoa = pessoaEncontrada || null;
