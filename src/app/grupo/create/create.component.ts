@@ -26,11 +26,18 @@ export class CreateGrupoComponent {
         type: "select",
         select: {
           selectItems: pessoaService.listAll(),
+          typeOfItems: Pessoa,
           displayValueFunction: (item: Pessoa) => item.nome,
           searchValueFunction: (item: Pessoa) => item.nome
         }
       }
     ]
+    /*
+    pessoaService.listAll().subscribe((pessoas: Pessoa[]) => {
+      this.customProperties.find((item) => item.name == "pessoa").select.selectItems = pessoas;
+
+      console.log(pessoas);
+    });*/
   }
 
   checkObrigatorios(objeto:any, propriedades: string[]): {valido: boolean, camposNaoPreenchidos: string[]} {

@@ -15,19 +15,19 @@ export class DefaultService<T> {
     return this.baseUrl + this.tabela;
   }
 
-  listAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.getURL());
+  listAll(): Observable<any[]> {
+    return this.http.get<any[]>(this.getURL());
   }
 
-  getById(id: number): Observable<T> {
+  getById(id: number): Observable<any> {
     return this.http.get<T>(this.getURL() + id);
   }
 
-  create(item: T): Observable<T> {
+  create(item: any): Observable<any> {
     return this.http.post<T>(this.getURL(), item);
   }
 
-  update(item: T): Observable<T> {
+  update(item: any): Observable<any> {
     return this.http.put<T>(this.getURL(), item);
   }
 

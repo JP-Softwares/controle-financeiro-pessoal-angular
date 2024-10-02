@@ -9,7 +9,7 @@
     } 
     @if (type == "select") {
         <p-dropdown 
-        [options]="select['selectItems']" 
+        [options]="listaValores" 
         [(ngModel)]="selectedItem" 
         optionLabel="_displayValueField" 
         [filter]="true"

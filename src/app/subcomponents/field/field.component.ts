@@ -24,11 +24,32 @@ export class FieldComponent implements OnInit {
 
   type: string = "input";
 
-  select: any = {};
+  select: any = undefined;
 
   selectedItem: any = "";
 
+  listaValores: any[] = [];
+
   @Output() valueChanged = new EventEmitter<any>();
+
+  observeChanges(property: string, object: any, execute: any, condicao?: any) {
+    let timeoutValue: any = setTimeout(() => {
+      console.log({name: this.name, message: "executando"});
+      condicao = condicao || (() => {return object[property as keyof FieldComponent];});
+      if(condicao(object)) {
+        console.log("passou");
+        clearTimeout(timeoutValue);
+        execute();
+      }
+    }, 100);
+  }
+
+  mapearCampos() {
+    this.listaValores.forEach((selectItem: any) => {
+      selectItem['_displayValueField'] = this.select['displayValueFunction'](selectItem);
+      selectItem['_filterField'] = this.select['searchValueFunction'](selectItem);
+    });
+  }
 
   ngOnInit(): void {
     this.customProperties = this.customProperties || {};
@@ -44,12 +65,20 @@ export class FieldComponent implements OnInit {
       this.inputType = "email";
     } else this.inputType = typeof this.value;
 
-    if(this.select['selectItems']) {
-      this.select['selectItems'].forEach((selectItem: any) => {
-        selectItem['_displayValueField'] = this.select['displayValueFunction'](selectItem);
-        selectItem['_filterField'] = this.select['searchValueFunction'](selectItem);
-      })
+    
+
+    if(this.select && this.select['selectItems']) {
+      
+      if(this.select['selectItems'].subscribe) {
+        this.select['selectItems'].subscribe((lista: any[]) => {
+          this.listaValores = lista.map((item) => this.select['typeOfItems'].from(item));
+          this.mapearCampos()
+        })
+      } else this.mapearCampos();
     }
+
+
+    
   }
 
   onValueChanged() {

@@ -4,6 +4,7 @@ import { Pessoa } from '../../service/pessoa';
 import { PessoaService } from '../../service/pessoa.service';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pessoa-create',
@@ -35,13 +36,13 @@ export class CreatePessoaComponent {
   }
 
   criar(pessoa: Pessoa) {
-    let check = this.checkObrigatorios(pessoa, ["nome", "email", "senha"]);
+    let check = this.checkObrigatorios(pessoa, ["nome", "CPF", "email", "telefone"]);
     if(check.valido) {
-      this.pessoaService.create(pessoa);
+      this.pessoaService.create(pessoa.toApiObject()).subscribe((pessoa: Pessoa) => {
+        this.pessoa = new Pessoa();
 
-      this.pessoa = new Pessoa();
-
-      this.navigateTo('/')
+        this.navigateTo('/')
+      });
     } else{
       alert("Você não preencheu todos os campos! Campos não preenchidos: "+ check.camposNaoPreenchidos.join(", "))
     }
