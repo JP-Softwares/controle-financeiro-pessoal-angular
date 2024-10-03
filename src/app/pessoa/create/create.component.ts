@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormComponent } from '../../subcomponents/form/form.component';
-import { Pessoa } from '../../service/pessoa';
+import { Pessoa } from '../../modelos/pessoa';
 import { PessoaService } from '../../service/pessoa.service';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { Observable } from 'rxjs';
+import { DefaultMethods } from '../../mo../../modelos/DefaultMethods';
 
 @Component({
   selector: 'app-pessoa-create',
@@ -13,26 +14,11 @@ import { Observable } from 'rxjs';
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
-export class CreatePessoaComponent {
+export class CreatePessoaComponent extends DefaultMethods {
   pessoa: Pessoa = new Pessoa();
 
   constructor(private router: Router, private pessoaService: PessoaService) {
-
-  }
-
-  checkObrigatorios(objeto:any, propriedades: string[]): {valido: boolean, camposNaoPreenchidos: string[]} {
-    let valido = true;
-
-    let camposNaoPreenchidos = []
-
-    for(let propriedade of propriedades) {
-      if((objeto[propriedade] + "") == "") {
-        valido = false;
-        camposNaoPreenchidos.push(propriedade)
-      }
-    }
-
-    return {valido: valido, camposNaoPreenchidos: camposNaoPreenchidos};
+    super();
   }
 
   criar(pessoa: Pessoa) {

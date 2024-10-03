@@ -26,9 +26,9 @@ export class FieldComponent implements OnInit {
 
   select: any = undefined;
 
-  selectedItem: any = "";
-
   listaValores: any[] = [];
+
+  isEnum: boolean = false;
 
   @Output() valueChanged = new EventEmitter<any>();
 
@@ -45,10 +45,15 @@ export class FieldComponent implements OnInit {
   }
 
   mapearCampos() {
-    this.listaValores.forEach((selectItem: any) => {
-      selectItem['_displayValueField'] = this.select['displayValueFunction'](selectItem);
-      selectItem['_filterField'] = this.select['searchValueFunction'](selectItem);
-    });
+    if(this.listaValores.length == 0 && this.select['typeOfEnum']) {
+      this.listaValores = this.select['selectItems'];
+      this.isEnum = true;
+    } else {
+      this.listaValores.forEach((selectItem: any) => {
+        selectItem['_displayValueField'] = this.select['displayValueFunction'](selectItem);
+        selectItem['_filterField'] = this.select['searchValueFunction'](selectItem);
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -63,18 +68,24 @@ export class FieldComponent implements OnInit {
     } else if(["email", "e-mail"].includes(this.name.toLowerCase())) {
       this.capitalizeName = "E-mail";
       this.inputType = "email";
+    } else if(["data", "date"].includes(this.name.toLowerCase())) {
+      this.inputType = "date";
     } else this.inputType = typeof this.value;
 
     
 
     if(this.select && this.select['selectItems']) {
+      this.select['displayValueFunction'] = this.select['displayValueFunction'] || ((item: any) => item);
+      this.select['searchValueFunction'] = this.select['searchValueFunction'] || ((item: any) => item);
       
       if(this.select['selectItems'].subscribe) {
         this.select['selectItems'].subscribe((lista: any[]) => {
           this.listaValores = lista.map((item) => this.select['typeOfItems'].from(item));
           this.mapearCampos()
         })
-      } else this.mapearCampos();
+      } else if(this.select['typeOfEnum']){
+        this.mapearCampos();
+      }else this.mapearCampos();
     }
 
 
@@ -82,7 +93,15 @@ export class FieldComponent implements OnInit {
   }
 
   onValueChanged() {
-    this.valueChanged.emit(this.value)
+    let valorFinal = this.value;
+    // Convert Number to Number
+    if(this.inputType == "number") {
+      if(this.value === "") valorFinal = 0;
+      else {
+        valorFinal = this.inputType == "number" && typeof this.value == "string" ? parseInt(this.value) : this.value;
+      }
+    }
+    this.valueChanged.emit(valorFinal)
   }
 
 }

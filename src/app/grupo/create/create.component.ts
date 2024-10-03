@@ -3,9 +3,10 @@ import { FormComponent } from '../../subcomponents/form/form.component';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { GrupoService } from '../../service/grupo.service';
-import { Grupo } from '../../service/grupo';
+import { Grupo } from '../../modelos/grupo';
 import { PessoaService } from '../../service/pessoa.service';
-import { Pessoa } from '../../service/pessoa';
+import { Pessoa } from '../../modelos/pessoa';
+import { DefaultMethods } from '../../modelos/DefaultMethods';
 
 @Component({
   selector: 'app-grupo-create',
@@ -14,19 +15,20 @@ import { Pessoa } from '../../service/pessoa';
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
-export class CreateGrupoComponent {
+export class CreateGrupoComponent extends DefaultMethods {
   grupo: Grupo = new Grupo();
 
   customProperties: any[] = [];
 
   constructor(private router: Router, private grupoService: GrupoService, private pessoaService: PessoaService) {
+    super();
     this.customProperties = [
       {
         name: "pessoa",
         type: "select",
         select: {
           selectItems: pessoaService.listAll(),
-          typeOfItems: Pessoa,
+          typeOfItems: typeof Pessoa,
           displayValueFunction: (item: Pessoa) => item.nome,
           searchValueFunction: (item: Pessoa) => item.nome
         }
@@ -40,29 +42,14 @@ export class CreateGrupoComponent {
     });*/
   }
 
-  checkObrigatorios(objeto:any, propriedades: string[]): {valido: boolean, camposNaoPreenchidos: string[]} {
-    let valido = true;
-
-    let camposNaoPreenchidos = []
-
-    for(let propriedade of propriedades) {
-      if((objeto[propriedade] + "") == "") {
-        valido = false;
-        camposNaoPreenchidos.push(propriedade)
-      }
-    }
-
-    return {valido: valido, camposNaoPreenchidos: camposNaoPreenchidos};
-  }
-
   criar(grupo: Grupo) {
-    let check = this.checkObrigatorios(grupo, ["nome", "descricao"]);
+    let check = this.checkObrigatorios(grupo, ["nome", "descricao", "pessoa"]);
     if(check.valido) {
-      this.grupoService.add(grupo);
+      this.grupoService.create(grupo.toApiObject()).subscribe((grupo: any) => {
+        this.grupo = new Grupo();
 
-      this.grupo = new Grupo();
-
-      this.navigateTo('/')
+        this.navigateTo('/')
+      });
     } else{
       alert("Você não preencheu todos os campos! Campos não preenchidos: "+ check.camposNaoPreenchidos.join(", "))
     }

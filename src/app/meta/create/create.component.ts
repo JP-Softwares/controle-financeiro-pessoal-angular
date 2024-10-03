@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Meta } from '../../service/meta';
+import { Meta } from '../../modelos/meta';
 import { GrupoService } from '../../service/grupo.service';
 import { MetaService } from '../../service/meta.service';
-import { Grupo } from '../../service/grupo';
+import { Grupo } from '../../modelos/grupo';
 import { Router } from '@angular/router';
 import { FormComponent } from '../../subcomponents/form/form.component';
 import { ButtonModule } from 'primeng/button';
+import { DefaultMethods } from '../../modelos/DefaultMethods';
 
 @Component({
   selector: 'app-meta-create',
@@ -14,18 +15,20 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
-export class CreateMetaComponent {
+export class CreateMetaComponent extends DefaultMethods {
   meta: Meta = new Meta();
 
   customProperties: any[] = [];
 
   constructor(private router: Router, private metaService: MetaService, private grupoService: GrupoService) {
+    super();
     this.customProperties = [
       {
         name: "grupo",
         type: "select",
         select: {
           selectItems: grupoService.listAll(),
+          typeOfItems: Grupo,
           displayValueFunction: (item: Grupo) => item.nome,
           searchValueFunction: (item: Grupo) => item.nome
         }
@@ -33,29 +36,15 @@ export class CreateMetaComponent {
     ]
   }
 
-  checkObrigatorios(objeto:any, propriedades: string[]): {valido: boolean, camposNaoPreenchidos: string[]} {
-    let valido = true;
-
-    let camposNaoPreenchidos = []
-
-    for(let propriedade of propriedades) {
-      if((objeto[propriedade] + "") == "") {
-        valido = false;
-        camposNaoPreenchidos.push(propriedade)
-      }
-    }
-
-    return {valido: valido, camposNaoPreenchidos: camposNaoPreenchidos};
-  }
-
   criar(meta: Meta) {
-    let check = this.checkObrigatorios(meta, ["nome", "descricao"]);
+    let check = this.checkObrigatorios(meta, ["tipo", "valor", "grupo"]);
     if(check.valido) {
-      this.metaService.add(meta);
+      console.log(meta)
+      this.metaService.create(meta.toApiObject()).subscribe((meta: Meta) => {
+        this.meta = new Meta();
 
-      this.meta = new Meta();
-
-      this.navigateTo('/')
+        this.navigateTo('/');
+      });
     } else{
       alert("Você não preencheu todos os campos! Campos não preenchidos: "+ check.camposNaoPreenchidos.join(", "))
     }

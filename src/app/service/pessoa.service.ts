@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pessoa } from './pessoa';
+import { Pessoa } from '../modelos/pessoa';
 import { HttpClient } from '@angular/common/http';
 import { DefaultService } from './default.service';
 import { Observable } from 'rxjs';

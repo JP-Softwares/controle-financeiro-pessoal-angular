@@ -10,10 +10,10 @@
     @if (type == "select") {
         <p-dropdown 
         [options]="listaValores" 
-        [(ngModel)]="selectedItem" 
-        optionLabel="_displayValueField" 
+        [(ngModel)]="value" 
+        [optionLabel]="isEnum ? undefined : '_displayValueField'" 
         [filter]="true"
-        filterBy="_filterField" 
+        [filterBy]="isEnum ? undefined : '_filterField'" 
         placeholder="Selecione um valor"
         emptyMessage="Nenhum valor encontrado."
         (onChange)="onValueChanged()" />
