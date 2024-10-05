@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {  Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class DefaultService<T> {
   }
 
   getById(id: number): Observable<any> {
-    return this.http.get<T>(this.getURL() + id);
+    return this.http.get<T>(this.getURL() + "/" + id);
   }
 
   create(item: any): Observable<any> {
@@ -31,7 +31,7 @@ export class DefaultService<T> {
     return this.http.put<T>(this.getURL(), item);
   }
 
-  delete(id: number) {
-    this.http.delete(this.getURL() + id);
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.getURL() + "/" + id)
   }
 }

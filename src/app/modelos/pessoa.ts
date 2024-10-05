@@ -6,7 +6,6 @@ export class Pessoa {
     CPF: string = ""
     email: string = ""
     telefone: string = ""
-    grupos: Grupo[] = []
 
     constructor() {
 
@@ -19,7 +18,6 @@ export class Pessoa {
         if(pessoa.cpf) novaPessoa.CPF = pessoa.cpf;
         if(pessoa.email) novaPessoa.email = pessoa.email;
         if(pessoa.telefone) novaPessoa.telefone = pessoa.telefone;
-        if(pessoa.grupos) novaPessoa.grupos = pessoa.grupos;
 
         return novaPessoa;
     }
@@ -34,5 +32,9 @@ export class Pessoa {
         objeto.telefone = this.telefone;
 
         return objeto;
+    }
+
+    displayValue(): string {
+        return this.nome;
     }
 }

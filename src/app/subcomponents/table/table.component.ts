@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -8,9 +8,15 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
 
-  @Input() lista:any[] = [];
+  @Input() lista:any = [];
+
+  listaFinal: any = [];
+
+  @Input() typeOfItems: any = null;
+
+  @Input() tabela: any = null;
 
   colunas:string[] = [];
   
@@ -22,8 +28,25 @@ export class TableComponent implements OnInit {
   }  
 
   ngOnInit(): void {
+    if(this.lista.subscribe) {
+      this.lista.subscribe((listaValores: any[]) => {
+        this.listaFinal = listaValores.map((item: any) => this.typeOfItems.from(item));
+        this.formatarLista()
+    });
+    }else this.formatarLista();
+
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(!changes['lista'].firstChange) {
+      this.ngOnInit()
+    }
+  }
+  
+  formatarLista() {
     let listaColunas:string[] = [];
-    this.lista.forEach((item) => {
+    this.listaFinal.forEach((item: any) => {
       if(typeof item == 'object') listaColunas.push(...Object.keys(item))
     });
     this.colunas = listaColunas.filter(this.onlyUnique);
@@ -35,6 +58,10 @@ export class TableComponent implements OnInit {
 
   excluir(objeto: any) {
     this.onRemove.emit(objeto);
+  }
+
+  funcao(item: any, coluna: string): string {
+    return typeof item[coluna] == "object" ? item[coluna].displayValue() : item[coluna]
   }
 
 }

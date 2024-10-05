@@ -1,9 +1,4 @@
 import {
-  BrowserModule,
-  DomRendererFactory2
-} from "./chunk-A4HGNWEW.js";
-import "./chunk-4TNICGIJ.js";
-import {
   AUTO_STYLE,
   AnimationGroupPlayer,
   AnimationMetadataType,
@@ -11,10 +6,15 @@ import {
   sequence,
   style,
   ɵPRE_STYLE
-} from "./chunk-B5OHMYDU.js";
+} from "./chunk-VITN7KHP.js";
+import {
+  BrowserModule,
+  DomRendererFactory2
+} from "./chunk-C67LEXHU.js";
+import "./chunk-NDAWTX56.js";
 import {
   DOCUMENT
-} from "./chunk-K2YNOWK4.js";
+} from "./chunk-6AM2523Y.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionScheduler,
@@ -24,8 +24,6 @@ import {
   NgZone,
   RendererFactory2,
   RuntimeError,
-  __objRest,
-  __spreadValues,
   inject,
   performanceMarkFeature,
   setClassMetadata,
@@ -33,7 +31,11 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-YVOBCSOD.js";
+} from "./chunk-4MZAX6BM.js";
+import {
+  __objRest,
+  __spreadValues
+} from "./chunk-FRPRYHQD.js";
 
 // node_modules/@angular/animations/fesm2022/browser.mjs
 var LINE_START = "\n - ";

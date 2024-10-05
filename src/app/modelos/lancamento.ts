@@ -40,7 +40,8 @@ export class Lancamento {
         objeto.tipo = this.tipo;
         objeto.valor = this.valor;
         objeto.categoria = this.categoria;
-        objeto.grupo_id = this.grupo?.id;
+        // objeto.grupo_id = this.grupo?.id;
+        objeto.grupo = this.grupo?.toApiObject();
 
         return objeto;
     }

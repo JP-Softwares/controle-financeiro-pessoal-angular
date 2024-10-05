@@ -28,7 +28,7 @@ export class CreateGrupoComponent extends DefaultMethods {
         type: "select",
         select: {
           selectItems: pessoaService.listAll(),
-          typeOfItems: typeof Pessoa,
+          typeOfItems: Pessoa,
           displayValueFunction: (item: Pessoa) => item.nome,
           searchValueFunction: (item: Pessoa) => item.nome
         }
@@ -48,7 +48,9 @@ export class CreateGrupoComponent extends DefaultMethods {
       this.grupoService.create(grupo.toApiObject()).subscribe((grupo: any) => {
         this.grupo = new Grupo();
 
-        this.navigateTo('/')
+        console.log("criado")
+
+        this.navigateTo('/grupo')
       });
     } else{
       alert("Você não preencheu todos os campos! Campos não preenchidos: "+ check.camposNaoPreenchidos.join(", "))

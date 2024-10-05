@@ -5,9 +5,7 @@ import {
   Input,
   InputFlags,
   NgModule,
-  Subject,
   TemplateRef,
-  __spreadValues,
   setClassMetadata,
   signal,
   ɵɵStandaloneFeature,
@@ -19,7 +17,11 @@ import {
   ɵɵdirectiveInject,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-YVOBCSOD.js";
+} from "./chunk-4MZAX6BM.js";
+import {
+  Subject,
+  __spreadValues
+} from "./chunk-FRPRYHQD.js";
 
 // node_modules/primeng/fesm2022/primeng-utils.mjs
 var ObjectUtils = class _ObjectUtils {
@@ -1090,4 +1092,4 @@ export {
   SharedModule,
   TranslationKeys
 };
-//# sourceMappingURL=chunk-BPL3Y6T6.js.map
+//# sourceMappingURL=chunk-EONELBRJ.js.map

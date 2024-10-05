@@ -26,7 +26,8 @@ export class Meta {
         objeto.id = this.id;
         objeto.tipo = this.tipo;
         objeto.valor = this.valor;
-        objeto.grupo_id = this.grupo?.id;
+        // objeto.grupo_id = this.grupo?.id;
+        objeto.grupo = this.grupo?.toApiObject();
 
         return objeto;
     }

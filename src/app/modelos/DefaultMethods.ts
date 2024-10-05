@@ -1,4 +1,9 @@
+import { Router } from "@angular/router";
+
 export class DefaultMethods {
+
+  constructor() {
+  }
 
   checkObrigatorios(objeto:any, propriedades: string[]): {valido: boolean, camposNaoPreenchidos: string[]} {
     let valido = true;

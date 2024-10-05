@@ -26,8 +26,13 @@ export class Grupo {
         objeto.id = this.id;
         objeto.nome = this.nome;
         objeto.descricao = this.descricao;
-        objeto.pessoa_id = this.pessoa?.id;
+        //objeto.pessoa_id = this.pessoa?.id;
+        objeto.pessoa = this.pessoa?.toApiObject();
 
         return objeto;
+    }
+
+    displayValue(): string {
+        return this.nome;
     }
 }

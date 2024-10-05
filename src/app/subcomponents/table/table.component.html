@@ -5,10 +5,10 @@
             <th>{{coluna}}</th>
         }
         </tr>
-    @for(item of lista; track item) {
+    @for(item of listaFinal; track item) {
         <tr>
         @for(coluna of colunas; track coluna) {
-            <td>{{item[coluna]}}</td>
+            <td>{{funcao(item, coluna)}}</td>
         }
         <td>
             <p-button (click)="editar(item)" label="Editar">
