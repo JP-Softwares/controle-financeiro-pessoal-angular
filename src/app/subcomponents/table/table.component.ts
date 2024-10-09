@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-subcomponents-table',
@@ -19,6 +20,8 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() tabela: any = null;
 
   colunas:string[] = [];
+
+  listaObservable: boolean = false;
   
   @Output() onEdit = new EventEmitter<any>();
   @Output() onRemove = new EventEmitter<any>();
@@ -29,6 +32,7 @@ export class TableComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if(this.lista.subscribe) {
+      this.listaObservable = true;
       this.lista.subscribe((listaValores: any[]) => {
         this.listaFinal = listaValores.map((item: any) => this.typeOfItems.from(item));
         this.formatarLista()
@@ -58,10 +62,27 @@ export class TableComponent implements OnInit, OnChanges {
 
   excluir(objeto: any) {
     this.onRemove.emit(objeto);
+
+    if(this.listaObservable) {
+      let intervalo = setInterval(() => {
+        if(this.lista.subscribe) {
+          clearInterval(intervalo);
+          this.ngOnInit();
+        }
+      }, 100);
+    }
   }
 
   funcao(item: any, coluna: string): string {
-    return typeof item[coluna] == "object" ? item[coluna].displayValue() : item[coluna]
+    let valor = item[coluna];
+
+    if(typeof valor == "object") {
+      if(new Date(valor).toString() !== "Invalid Date") return new Date(valor).toLocaleDateString("pt-BR");
+      else if(item[coluna].displayValue) return item[coluna].displayValue();
+      else return item[coluna];
+    } else{
+      return item[coluna];
+    }
   }
 
 }

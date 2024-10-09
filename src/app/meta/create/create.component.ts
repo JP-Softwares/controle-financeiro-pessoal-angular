@@ -43,7 +43,7 @@ export class CreateMetaComponent extends DefaultMethods {
       this.metaService.create(meta.toApiObject()).subscribe((meta: Meta) => {
         this.meta = new Meta();
 
-        this.navigateTo('/');
+        this.navigateTo('/meta');
       });
     } else{
       alert("Você não preencheu todos os campos! Campos não preenchidos: "+ check.camposNaoPreenchidos.join(", "))

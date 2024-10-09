@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { DefaultMethods } from '../../modelos/DefaultMethods';
 import { TableComponent } from '../../subcomponents/table/table.component';
 import { ButtonModule } from 'primeng/button';
-import { Grupo } from '../../modelos/grupo';
-import { GrupoService } from '../../service/grupo.service';
 import { Observable } from 'rxjs';
+import { MetaService } from '../../service/meta.service';
+import { Router } from '@angular/router';
+import { Meta } from '../../modelos/meta';
 
 @Component({
-  selector: 'app-grupo-list',
+  selector: 'app-meta-list',
   standalone: true,
   imports: [TableComponent, ButtonModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListGrupoComponent extends DefaultMethods {
+export class ListMetaComponent extends DefaultMethods {
 
   lista: Observable<any[]>|null = null;
 
-  typeObjeto: any = Grupo;
+  typeObjeto: any = Meta;
 
-  constructor(private router: Router, private grupoService: GrupoService) {
+  constructor(private router: Router, private metaService: MetaService) {
     super();
 
-    this.lista = grupoService.listAll();
+    this.lista = metaService.listAll();
   }
 
-  remove(grupo: Grupo) {
-    this.grupoService.delete(grupo.id).subscribe((response:any) => {
-      this.lista = this.grupoService.listAll();
+  remove(meta: Meta) {
+    this.metaService.delete(meta.id).subscribe((response:any) => {
+      this.lista = this.metaService.listAll();
     });
 
     //location.reload()

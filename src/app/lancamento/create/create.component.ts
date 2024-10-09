@@ -60,7 +60,7 @@ export class CreateLancamentoComponent extends DefaultMethods{
       this.lancamentoService.create(lancamento.toApiObject()).subscribe((lancamento: Lancamento) => {
         this.lancamento = new Lancamento();
 
-        this.navigateTo('/')
+        this.navigateTo('/lancamento')
       });
     } else{
       alert("Você não preencheu todos os campos! Campos não preenchidos: "+ check.camposNaoPreenchidos.join(", "))

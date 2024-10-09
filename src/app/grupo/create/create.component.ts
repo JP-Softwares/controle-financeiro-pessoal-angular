@@ -48,8 +48,6 @@ export class CreateGrupoComponent extends DefaultMethods {
       this.grupoService.create(grupo.toApiObject()).subscribe((grupo: any) => {
         this.grupo = new Grupo();
 
-        console.log("criado")
-
         this.navigateTo('/grupo')
       });
     } else{
